@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="css/remove-tree.css">
+</head>
+<body>
+  <div class="container">
+    <h2>你的小树苗</h2>
+
+    <div class="tree-info">
+      <h3>树种名称：</h3>
+      <span id="tree-name"></span>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progress" class="progress"></div>
+    </div>
+
+    <div class="image-container">
+      <img id="young-tree" src="img/youngtree.png" alt="幼苗图片">
+      <img id="thumbnail" src="" alt="缩略图">
+      <img id="preview-image" src="" alt="预览图">
+    </div>
+
+    <div class="buttons">
+      <a href="study.html" class="button">学习知识</a>
+      <a href="quiz.html" class="button">答题界面</a>
+    </div>
+  </div>
+
+  <script src="js/remove-tree.js"></script>
+  <script>
+    // 获取上一个页面传递的树种名称和缩略图信息
+    var selectedTree = window.opener.selectedTree;
+    var thumbnailImage = window.opener.thumbnailImage;
+  
+    // 更新页面上的树种名称和缩略图
+    var treeNameElement = document.getElementById("tree-name");
+    treeNameElement.textContent = selectedTree;
+  
+    var thumbnailElement = document.getElementById("thumbnail");
+    thumbnailElement.src = thumbnailImage;
+  
+    // 根据进度条的宽度来显示不同的图片
+    var progressElement = document.getElementById("progress");
+    var youngTreeImage = document.getElementById("young-tree");
+    var previewImage = document.getElementById("preview-image");
+  
+    function updateProgress(progress) {
+      progressElement.style.width = progress + "%";
+  
+      if (progress < 50) {
+        youngTreeImage.style.display = "block";
+        thumbnailElement.style.display = "none";
+        previewImage.style.display = "none";
+      } else if (progress >= 50 && progress < 100) {
+        youngTreeImage.style.display = "none";
+        thumbnailElement.style.display = "block";
+        previewImage.style.display = "none";
+      } else {
+        youngTreeImage.style.display = "none";
+        thumbnailElement.style.display = "none";
+        previewImage.style.display = "block";
+      }
+    }
+  
+    // 示例进度值为 10%
+    updateProgress(10);
+  </script>
+</body>
+</html>

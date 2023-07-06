@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title><link  href="css/1.css"rel="stylesheet">
+		<style>.background {
+  width: 100%;
+  height: 100vh; /* 设置容器高度为视窗的高度 */
+  animation: colorAnimation 5s infinite alternate;
+  background: linear-gradient(to bottom, #F0D9B5, #2ECC71); /* 设置渐变背景色 */
+}.loader-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  z-index: 1;
+}
+
+
+@keyframes colorAnimation {
+  0% {
+    background-color: #F0D9B5; /* 初始颜色，沙漠颜色 */
+  }
+  100% {
+    background-color: #2ECC71; /* 最终颜色，绿色 */
+  }
+}.circle {
+    fill: none;
+    stroke: #00ff00;
+    stroke-width: 8;
+    stroke-dasharray: 314;
+    stroke-dashoffset:314;
+}
+.circle {
+    fill: none;
+    stroke: #55ff00;
+    stroke-width: 8;
+    stroke-dasharray: 314;
+    stroke-dashoffset:314;
+    animation: circle 3s infinite;
+	stroke-linecap: round;
+	transform:rotate(-90deg);
+	transform-origin: center;
+	transform-box:fill-box;
+	transition: all 1s;
+}
+@keyframes circle {
+    100%{
+        stroke-dashoffset:0;
+    }
+}.text{
+    font-size: 20px;
+}
+.percent{
+    font-size: 10px;
+}</style>
+	</head>
+	<body class="background">
+	<a href="main.html"><div class="loader-container "><svg>
+	   <circle class="circle" cx="80" cy="80" r="50" fill="none" stroke-width="8" stroke="#005500"></circle>
+		  <text x="80" y="85" fill="#55aa7f" text-anchor="middle">
+		        <tspan class="text">0</tspan><tspan class="percent">%</tspan>
+		    </text>
+	</svg></div></a>
+	
+<div><img id="tree" src="img/tree.png" />
+	<img id="tree2" src="img/youngtree.png"/>
+	</div>
+		<div id="fyc1"><div id="yc1"><img id="leave" src="img/leave.png"/></div></div>
+	<script >
+let progressLen=314;
+const textDom=document.getElementsByClassName('text')[0];
+const circleDom=document.getElementsByClassName('circle')[0];
+setPercent=(num)=>{
+    if(num>100) return;
+    circleDom.style['stroke-dashoffset']=progressLen-(progressLen/100)*num;
+    textDom.innerHTML=num;
+}
+let i=0;
+setInterval(()=>{
+    i+=Math.floor(Math.random()*5);
+    if(i>=100)i=100;
+    setPercent(i);
+},250)</script>
+	</body>
+</html>
