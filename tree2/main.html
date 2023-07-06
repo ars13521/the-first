@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<style>.background {
+  width: 100%;
+  height: 100vh; /* 设置容器高度为视窗的高度 */
+  animation: colorAnimation 5s infinite alternate;
+  background: linear-gradient(to bottom, #F0D9B5, #2ECC71); /* 设置渐变背景色 */
+}.spinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid;
+    border-color: #00ffff transparent #00ff00 transparent;
+    border-radius: 50%;
+    animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loader-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: #000;
+    z-index: 1;
+}
+			 body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+			form {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: center;
+			}
+			
+			label, input {
+			  margin-bottom: 10px;
+			}
+			
+			button {
+			  padding: 8px 16px;
+			}
+input {
+  
+  
+    width: 400px; /* 调整容器的宽度 */
+  
+}
+#login-form{
+	 max-width: 400px; /* 设置容器的最大宽度 */
+	  margin: 0 auto; /* 水平居中对齐 */
+	  padding: 20px;
+}
+		</style>
+	</head>
+	<body class="background"><div class="loader-container">
+      <div class="spinner"></div>
+  </div>
+  
+		<form id="login-form">
+		    <label for="username">用户名：</label>
+		    <input type="text" id="username" required>
+		    
+		    <label for="email">邮箱地址：</label>
+		    <input type="email" id="email" required>
+		    
+		    <label for="phone">电话号码：</label>
+		    <input type="tel" id="phone" required>
+		    
+		    <button type="submit">登录</button>
+		  </form>
+
+  <script>
+  const form = document.getElementById("login-form");
+  
+  form.addEventListener("submit", function(event) {
+    event.preventDefault(); // 阻止表单的默认提交行为
+  
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+  
+    if (!validateEmail(email)) {
+      alert("请输入有效的邮箱地址！");
+      return;
+    }
+  
+    if (!validatePhone(phone)) {
+      alert("请输入有效的电话号码！");
+      return;
+    }
+  
+    // 执行后续逻辑，例如验证用户名、进行登录操作等
+  
+    // 如果验证通过，跳转到主页
+    window.location.href = "remove-tree.html";
+  });
+  
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  function validatePhone(phone) {
+    const phoneRegex = /^\d{11}$/;
+    return phoneRegex.test(phone);
+  }
+const loaderContainer = document.querySelector('.loader-container');
+window.addEventListener('load', () => {
+    // ...
+});window.addEventListener('load', () => {
+    loaderContainer.style.display = 'none';
+});
+  </script>
+	</body>
+</html>
